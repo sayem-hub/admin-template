@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 	
-<?php include 'includes/head.php'; ?>
+	<?php 
+
+			if (basename(__DIR__) != 'admin') {
+				$baseUrl = '../';
+				$isInternal = true;
+			} else {
+				$baseUrl = '';
+				$isInternal = false;
+			}
+			include '../includes/head.php'; 
+	?>
 
 
 
 <body>
 
-	<?php include 'includes/main-nav.php'; ?>
+	<?php include '../includes/main-nav.php'; ?>
 
 
 
@@ -44,7 +54,7 @@
 						</div>
 					</div>
 					<!-- /user menu -->
-					<?php include 'includes/navigation.php'; ?>
+					<?php include '../includes/navigation.php'; ?>
 				</div>
 			</div>
 			<!-- /main sidebar -->
@@ -72,7 +82,7 @@
 							<h5 class="panel-title">Banner Create</h5>
 							<div class="heading-elements">
 								<ul class="icons-list">
-									<li><a href="bannerCreate .php" class="btn btn-primary add-new">Add New</a></li>
+									<li><a href="bannerCreate.php" class="btn btn-primary add-new">Add New</a></li>
 			                		<!-- <li><a data-action="collapse"></a></li>
 			                		<li><a data-action="reload"></a></li>
 			                		<li><a data-action="close"></a></li> -->
@@ -160,6 +170,6 @@
 	<!-- /page container -->
 
 
-		<?php include 'includes/script.php'; ?>
+		<?php include '../includes/script.php'; ?>
 </body>
 </html>

@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php include 'includes/head.php'; ?>
+	<?php 
+			if (basename(__DIR__) != 'admin') {
+			$baseUrl = '../';
+			$isInternal = true;
+		} else {
+			$baseUrl = '';
+			$isInternal = false;
+		}
+			include 'includes/head.php';
+	?>
 
 
 <body>

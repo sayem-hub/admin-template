@@ -3,9 +3,9 @@
 						<div class="category-content no-padding">
 						<ul class="navigation navigation-main navigation-accordion">
 
-								<!-- Main -->								
-								<li class="active"><a href="index.php"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
-								<li class=""><a href="bannerList.php"><i class="icon-image-compare"></i> <span>Banners</span></a></li>
+								<!-- Main -->							
+								<li class=<?php echo $isInternal == false ? "active" : ' '; ?> ><a href="<?php echo $isInternal == false ? ' ': '../';?>index.php"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+								<li class=<?php echo $isInternal == true ? "active" : ' ';?> ><a href="<?php echo $isInternal == true ? ' ' : 'banner/';?>bannerList.php"><i class="icon-image-compare"></i> <span>Banners</span></a></li>
 								<li class=""><a href="#"><i class="icon-home4"></i> <span>Services</span></a></li>
 								<li class=""><a href="#"><i class="icon-home4"></i> <span>Sections</span></a></li>
 								<li class=""><a href="#"><i class="icon-home4"></i> <span>Our Projects</span></a></li>
