@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 	
-<?php include 'includes/head.php'; ?>
+<?php
 
+if (basename(__DIR__) != 'admin') {
+    $baseUrl = '../';
+    $isInternal = true;
+} else {
+    $baseUrl = '';
+    $isInternal = false;
+}
+include '../includes/head.php';
+require '../controller/dbConfig.php';
+	
+?>			
 
 
 <body>
 
-	<?php include 'includes/main-nav.php'; ?>
+	<?php include '../includes/main-nav.php'; ?>
 
 
 
@@ -44,7 +55,7 @@
 						</div>
 					</div>
 					<!-- /user menu -->
-					<?php include 'includes/navigation.php'; ?>
+					<?php include '../includes/navigation.php'; ?>
 				</div>
 			</div>
 			<!-- /main sidebar -->
@@ -78,57 +89,65 @@
 			                	</ul>
 		                	</div>
 						</div>
-						<div class="panel-body">		
-									<form class="form-horizontal" action="#">
-								<fieldset class="content-group mt-10">
+						<div class="panel-body">	
 								
+									<?php
+											require '../controller/dbConfig.php';
+											$banner_id = $_GET['banner_id'];
+											$getSingleDataQry = "SELECT * FROM banners WHERE id={$banner_id}";
+											$getResult = mysqli_query($dbConnect, $getSingleDataQry);
+											?>
+																		<form class="form-horizontal" action="../controller/BannerController.php" method="post">
+								<fieldset class="content-group mt-10">
 
-									<div class="form-group">
-										<label class="control-label col-lg-2">Default text input</label>
-										<div class="col-lg-10">
-											<input type="text" class="form-control">
+																					<?php
+																						if (isset($_GET['msg'])) {
+																						?>
+																						
+																						<div class="alert alert-success no-border">
+																						<button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+																						<span class="text-semibold">Success!</span> <?php echo $_GET['msg']; ?>
+																					</div>
+																				<?php }?>
+
+
+																				<?php
+											foreach ($getResult as $key => $banner) {
+												?>
+										<input type="hidden" class="form-control" name="banner_id" value="<?php echo $banner['id']; ?>">
+
+										<div class="form-group">
+											<label class="control-label col-lg-2" for="title">Title</label>
+											<div class="col-lg-10">
+												<input type="text" class="form-control" id="title" name="title" required value="<?php echo $banner['title']; ?>">
+											</div>
 										</div>
-									</div>
 
-									<div class="form-group">
-										<label class="control-label col-lg-2">Password</label>
-										<div class="col-lg-10">
-											<input type="password" class="form-control">
+										<div class="form-group">
+											<label class="control-label col-lg-2" for="subTitle">Sub Title</label>
+											<div class="col-lg-10">
+												<input type="text" class="form-control" id="subTitle" name="subTitle" required value="<?php echo $banner['subTitle']; ?>">
+											</div>
 										</div>
-									</div>
 
-									
-
-			                        <div class="form-group">
-			                        	<label class="control-label col-lg-2">Default select</label>
-			                        	<div class="col-lg-10">
-				                            <select name="select" class="form-control">
-				                                <option value="opt1">Usual select box</option>
-				                                <option value="opt2">Option 2</option>
-				                                <option value="opt3">Option 3</option>
-				                                <option value="opt4">Option 4</option>
-				                                <option value="opt5">Option 5</option>
-				                                <option value="opt6">Option 6</option>
-				                                <option value="opt7">Option 7</option>
-				                                <option value="opt8">Option 8</option>
-				                            </select>
-			                            </div>
-			                        </div>
-
-									
-
-									<div class="form-group">
-										<label class="control-label col-lg-2">Textarea</label>
-										<div class="col-lg-10">
-											<textarea rows="5" cols="5" class="form-control" placeholder="Default textarea"></textarea>
+										<div class="form-group">
+											<label class="control-label col-lg-2" for="details">Details</label>
+											<div class="col-lg-10">
+												<textarea rows="5" cols="5" class="form-control" placeholder="Default textarea" id="details" name="details" required><?php echo $banner['details']; ?></textarea>
+											</div>
 										</div>
-									</div>
+
+										<div class="form-group">
+											<label class="control-label col-lg-2" for="image">Image</label>
+											<div class="col-lg-10">
+												<input type="file" class="form-control" id="image" name="image">
+											</div>
+										</div>
+									<?php }?>
 								</fieldset>
 
-								
-
 								<div class="text-right">
-									<button type="submit" class="btn btn-primary">Submit</button>
+									<button type="submit" class="btn btn-primary" name="updateBanner">Submit</button>
 									<a href="bannerList.php" class="btn btn-default">Back To List </a>
 								</div>
 							</form>
@@ -159,6 +178,6 @@
 	<!-- /page container -->
 
 
-		<?php include 'includes/script.php'; ?>
+		<?php include '../includes/script.php'; ?>
 </body>
 </html>

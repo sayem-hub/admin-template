@@ -12,6 +12,7 @@
 				}
 
 		include '../includes/head.php';
+		require '../controller/dbConfig.php';
 
 	?>
 
@@ -39,9 +40,9 @@
 								<div class="media">
 									<a href="#" class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
 									<div class="media-body">
-										<span class="media-heading text-semibold">Victoria Baker</span>
+										<span class="media-heading text-semibold">Portfolio</span>
 										<div class="text-size-mini text-muted">
-											<i class="icon-pin text-size-small"></i> &nbsp;Santa Ana, CA
+											<i class="icon-pin text-size-small"></i> &nbsp;Gazipur, Bangladeh
 										</div>
 									</div>
 
@@ -99,31 +100,51 @@
 							</div>
 
 							<div class="panel-body">
+
+								<?php
+										if (isset($_GET['msg'])) {
+									?>
+									<div class="alert alert-success no-border">
+									<button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+									<span class="text-semibold">Success!</span> <?php echo $_GET['msg']; ?>
+								</div>
+							<?php }?>
+								
 								
 							<table class="table table-bordered datatable-basic">
-								<thead>
+								<thead>	
 									<tr>
-										<th width="5%">SL.</th>
-										<th width="20">First Name</th>
-										<th width="20%">Last Name</th>
-										<th width="20%">Job Title</th>
-										<th width="20%">DOB</th>
-										<th width="5%">Status</th>
+										<th width="5%">SL</th>
+										<th width="20%">Title</th>
+										<th width="20%">Sub Title</th>
+										<th width="25%">Details</th>
+										<th width="20%">Image</th>
 										<th width="10%" class="text-center">Actions</th>
 									</tr>
 								</thead>
 								<tbody>
+
+								<?php
+										$selectQuery = "SELECT * FROM banners WHERE activeStatus=1";
+										$bannerList = mysqli_query($dbConnect, $selectQuery);
+
+										foreach ($bannerList as $key => $banner) {
+									
+										?>
+
 									<tr>
-										<td>1</td>
-										<td>Marth</td>
-										<td><a href="#">Enright</a></td>
-										<td>Traffic Court Referee</td>
-										<td>22 Jun 1972</td>
+										<td><?php echo ++$key;?></td>
+										<td><?php echo $banner['title'];?></td>
+										<td><?php echo $banner['subTitle'];?></a></td>
+										<td><?php echo $banner['details'];?></td>
+										<td><?php echo $banner['image'];?></td>
 										<td><span class="label label-success">Active</span></td>
 										<td class="text-center">
-											<a href="bannerUpdate.php" ><i class="icon-pencil7"></i></a>
-											<a href="#" ><i class="icon-trash"></i></a>
+											<a href="bannerUpdate.php?banner_id=<?php echo $banner['id']; ?>" ><i class="icon-pencil7"></i></a>
+											<a href="bannerDelete.php?banner_id=<?php echo $banner['id']; ?>"  ><i class="icon-trash"></i></a>
 										</td>
+									</tr>
+									<?php 	} ?>
 								</tbody>
 							</table>
 							</div>
@@ -136,7 +157,7 @@
 
 						<!-- Footer -->
 						<div class="footer text-muted">
-							&copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+							&copy; 2022. <a href="#">Limitless Web App Kit</a> by <a href="" target="_blank">Eugene Kopyov</a>
 						</div>
 						<!-- /footer -->
 
