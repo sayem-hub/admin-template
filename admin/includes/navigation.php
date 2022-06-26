@@ -6,9 +6,9 @@
 								<!-- Main -->							
 								<li class=<?php echo $isInternal == false ? "active" : ' '; ?> ><a href="<?php echo $isInternal == false ? ' ': '../';?>index.php"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
 								<li class=<?php echo $isInternal == true ? "active" : ' ';?> ><a href="<?php echo $isInternal == true ? ' ' : 'banner/';?>bannerList.php"><i class="icon-image-compare"></i> <span>Banners</span></a></li>
-								<li class=""><a href="#"><i class="icon-home4"></i> <span>Services</span></a></li>
+								<li class="active"><a href="<?php echo $isInternal == true ? ' ': 'ourProject/';?>projectList.php"><i class="icon-home4"></i> <span>Our Projects</span></a></li>
 								<li class=""><a href="#"><i class="icon-home4"></i> <span>Sections</span></a></li>
-								<li class=""><a href="#"><i class="icon-home4"></i> <span>Our Projects</span></a></li>
+								<li class=""><a href="#"><i class="icon-home4"></i> <span>Services</span></a></li>
 								<li class=""><a href="#"><i class="icon-home4"></i> <span>Our Staff</span></a></li>
 								<li class=""><a href="#"><i class="icon-home4"></i> <span>Our Clients</span></a></li>
 								<li class=""><a href="#"><i class="icon-home4"></i> <span>Contact Message</span></a></li>
