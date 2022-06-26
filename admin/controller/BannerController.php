@@ -5,6 +5,29 @@ require 'dbConfig.php';
 // THIS IS CODE FOR CREATE BANNER
 if (isset($_POST['saveBanner'])) {
 
+         $upload_status = false;
+        if (isset($_FILES['image'])) {
+            $imgArray = $_FILES['image'];
+            $file_name = $imgArray['name'];
+            $tmp_file_name = $imgArray['tmp_name'];
+
+            $nameExtArr = explode('.', $file_name);
+            $file_extension = strtolower(end($nameExtArr));
+            $valid_extensions = array('jpg', 'png', 'jpeg');
+
+            $random_file_name = time() . '.' . $file_extension;
+
+            if (in_array($file_extension, $valid_extensions)) {
+                move_uploaded_file($tmp_file_name, '../uploads/bannerImage/' . $random_file_name);
+                $upload_status = true;
+            } else {
+                $message = $file_extension . " is not Supported";
+            }
+        } else {
+            $message = "File Not Found";
+        }
+
+
     $upload_status = false;
     if (isset($_FILES['image'])) {
         $imgArray = $_FILES['image'];
@@ -31,10 +54,10 @@ if (isset($_POST['saveBanner'])) {
     $subTitle = $_POST['subTitle'];
     $details = $_POST['details'];
 
-    if (empty($title) || empty($subTitle) || empty($details) ) {
+    if (empty($title) || empty($subTitle) || empty($details) || empty($random_file_name) ) {
         $message = "All fields are required";
     } else {
-        $insertQry = "INSERT INTO banners (title, subTitle, details) VALUES ('{$title}', '{$subTitle}', '{$details}')";
+        $insertQry = "INSERT INTO banners (title, subTitle, details, image) VALUES ('{$title}', '{$subTitle}', '{$details}', '$random_file_name')";
         $isSubmit = mysqli_query($dbConnect, $insertQry);
 
         if ($isSubmit == true) {

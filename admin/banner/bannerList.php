@@ -17,7 +17,6 @@
 	?>
 
 
-
 	<body>
 
 		<?php include '../includes/main-nav.php'; ?>
@@ -35,28 +34,28 @@
 					<div class="sidebar-content">
 
 						<!-- User menu -->
-						<div class="sidebar-user">
-							<div class="category-content">
-								<div class="media">
-									<a href="#" class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
-									<div class="media-body">
-										<span class="media-heading text-semibold">Victoria Baker</span>
-										<div class="text-size-mini text-muted">
-											<i class="icon-pin text-size-small"></i> &nbsp;Santa Ana, CA
-										</div>
+					<div class="sidebar-user">
+						<div class="category-content">
+							<div class="media">
+								<a href="#" class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+								<div class="media-body">
+									<span class="media-heading text-semibold">Victoria Baker</span>
+									<div class="text-size-mini text-muted">
+										<i class="icon-pin text-size-small"></i> &nbsp;Santa Ana, CA
 									</div>
+								</div>
 
-									<div class="media-right media-middle">
-										<ul class="icons-list">
-											<li>
-												<a href="#"><i class="icon-cog3"></i></a>
-											</li>
-										</ul>
-									</div>
+								<div class="media-right media-middle">
+									<ul class="icons-list">
+										<li>
+											<a href="#"><i class="icon-cog3"></i></a>
+										</li>
+									</ul>
 								</div>
 							</div>
 						</div>
-						<!-- /user menu -->
+					</div>
+					<!-- /user menu -->
 
 
 						<?php include '../includes/navigation.php'; ?>
@@ -114,12 +113,11 @@
 								<thead>
 									<tr>
 										<th width="5%">SL.</th>
-										<th width="20">First Name</th>
-										<th width="20%">Last Name</th>
-										<th width="20%">Job Title</th>
-										<th width="20%">DOB</th>
-										<th width="5%">Status</th>
-										<th width="10%" class="text-center">Actions</th>
+										<th width="20%">Title</th>
+										<th width="20%">Sub Title</th>
+										<th width="25%">Details</th>
+										<th width="15%">Image</th>
+										<th width="15%" class="text-center">Actions</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -136,7 +134,9 @@
 										<td><?php echo $banner['title']; ?></td>
 										<td><?php echo $banner['subTitle']; ?></a></td>
 										<td><?php echo $banner['details']; ?></td>
-										<td><?php echo $banner['image']; ?></td>
+										<td>
+													<img class="img-responsive" width="180px" height="100px" src="<?php echo '../uploads/bannerImage/'.$banner['image']; ?>" />
+										</td>
 										<td><span class="label label-success">Active</span></td>
 										<td class="text-center">
 											<a href="bannerUpdate.php?banner_id=<?php echo $banner['id']; ?>" ><i class="icon-pencil7"></i></a>
