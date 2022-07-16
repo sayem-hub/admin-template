@@ -67,7 +67,7 @@ if (isset($_POST['saveBanner'])) {
         }
     }
 
-    header("Location: ../banner/bannerCreate.php?msg={$message}");
+    header("Location: ../bannerCreate.php?msg={$message}");
 
 }
 
@@ -93,8 +93,6 @@ if (isset($_POST['updateBanner'])) {
         }
     }
 
-    header("Location: ../banner/bannerUpdate.php?banner_id={$banner_id}&msg={$message}");
+    header("Location: ../bannerUpdate.php?banner_id={$banner_id}&msg={$message}");
 
 }
-
-

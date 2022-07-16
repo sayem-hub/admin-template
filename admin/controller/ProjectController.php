@@ -66,7 +66,7 @@ if (isset($_POST['saveProject'])) {
                 }
             }
 
-            header("Location: ../ourProject/projectCreate.php?msg={$message}");
+            header("Location: ../projectCreate.php?msg={$message}");
 
         }
 
@@ -93,9 +93,7 @@ if (isset($_POST['saveProject'])) {
                 
                 }
 
-                header("Location: ../ourProject/projectUpdate.php?project_id={$project_id}&msg={$message}");
+                header("Location: ../projectUpdate.php?project_id={$project_id}&msg={$message}");
 
             }
         
-
-
